@@ -34,6 +34,6 @@ export const postSignOn = (username, password) => (dispatch) => {
         throw error;
     })
     .then(response => response.json())
-    .then(response => dispatch(addJWTToken(response)))
+    .then(response => dispatch(addJWTToken(response))) // stores token
     .catch(error => { console.log('Post comments error', error.message); alert('Sign on failed.' + error.statusText)});
 };

@@ -9,7 +9,7 @@ export const Store = () => {
     const store = createStore(
         combineReducers({
             UserReducer,
-            ... createForms({
+            ... createForms({ // creating a model
                 signOn: InitialSignOn
             })}),
         appplyMiddleware(thunk, logger)

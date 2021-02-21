@@ -1,7 +1,7 @@
 import './App.css';
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Home } from '../src/components/Home';
+import Home from '../src/components/Home';
 import Checking from '../src/components/Checking';
 import { Savings } from '../src/components/Savings';
 import { Invest } from '../src/components/Invest';
@@ -13,7 +13,7 @@ import Login from './components/User/Login';
 import SignUp from './components/User/SignUp';
 import { FooterContainer } from './components/footer/FooterContainer';
 import AuthService from './services/authenticationService/authService';
-
+import Main from '../src/components/MainComponent';
 
 class App extends Component {
   constructor(props) {
@@ -25,6 +25,8 @@ class App extends Component {
     };
   }
   
+
+  /*
   componentDidMount() {
     const user = AuthService.getCurrentUser();
 
@@ -39,7 +41,7 @@ class App extends Component {
   logOut() {
     AuthService.logout();
   }
-
+*/
   
 
   render() {
@@ -53,7 +55,8 @@ class App extends Component {
               <Route path="/Checking" component={Checking} />
               <Route path="/Savings" component={Savings} />
               <Route path="/Invest" component={Invest} />
-              <Route path="/Login" component={Login} />
+              <Main> <Route path="/Login" component={Login} /> </Main>
+              {/*<Route path="/Login" component={Login} /> */}
               <Route path="/SignUp" component={SignUp} />
               <Route component={NoMatch}/>
             </Switch>

@@ -17,6 +17,5 @@ export const Savings = () => (
 
         </Modal>
 
-
     </div>
 )
