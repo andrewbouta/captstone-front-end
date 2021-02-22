@@ -40,7 +40,7 @@ export const Jumbotron = () => {
                     <p className="mx-5 mb-5">
                         Simplifying your financial life. 
                     </p>
-                    <MDBBtn outline color="white" className="mb-5"><MDBIcon icon="clone" className="mr-2"></MDBIcon> Sign Up</MDBBtn>
+                    <MDBBtn outline color="white" className="mb-5" href="/SignUp"><MDBIcon icon="clone" className="mr-2"></MDBIcon> Sign Up</MDBBtn>
                   </MDBCol>
                 </MDBCol>
               </MDBJumbotron>

@@ -4,6 +4,9 @@ import { postSignOn } from '../redux/ActionCreators';
 import userServiceFetch from '../services/userService/userServiceFetch';
 import { actions } from 'react-redux-form';
 import { connect } from 'react-redux';
+import Home from './Home';
+import Footer from './footer/Footer';
+import HomePostSignOn from './HomePostSignOn';
 
 // receives dispatch as parameter
 const mapDispatchToProps = (dispatch) => ({
@@ -15,12 +18,11 @@ class Main extends Component {
     render() {
         return(
             <div>
-                <Header />
-                    <Router>
-                        <Switch>
-                        <Route path='/home' component={() => <Home />} />
+                <Router>
+                    <Switch>
+                        <Route path='/home' component={() => <HomePostSignOn />} />
                             <Route exact path ='/'>
-                                <Home resetSignOnForm = {this.props.resetSignOnForm} postSignOn = {this.props.postSignOn}/>
+                                <HomePostSignOn resetSignOnForm = {this.props.resetSignOnForm} postSignOn = {this.props.postSignOn}/>
                             </Route>
                         </Switch>
                     </Router>

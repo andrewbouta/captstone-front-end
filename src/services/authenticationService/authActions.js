@@ -1,6 +1,6 @@
 // Not  functional
 
-import { LOGIN_REQUEST, LOGOUT_REQUEST, SUCCESS, FAILURE } from './authTypes';
+//import { LOGIN_REQUEST, LOGOUT_REQUEST, SUCCESS, FAILURE } from './authTypes';
 import * as AT from './authTypes';
 import axios from 'axios';
 

@@ -1,4 +1,3 @@
-import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -25,8 +24,8 @@ export const Wrapper = styled.div`
 export const Column = styled.div`
   display: flex;
   flex-direction: column;
-  text-align: left;
-  margin-left: 60px;
+  text-align: middlle;
+  margin-left: 100px;
 `;
 
 export const Row = styled.div`

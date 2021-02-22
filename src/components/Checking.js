@@ -49,6 +49,16 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
+  /*
+componentDidMount() {
+  axios.get('http://localhost:8080/user/checking-accounts')
+    .then((data) => {
+      this.setState()
+    })
+}*/
+
+
+
 
 class CheckingJumbotron extends Component {
 	render() {
@@ -131,7 +141,7 @@ export default function Checking() {
                 accusantium doloremque laudantium, totam rem aperiam.
               </MDBCardText>
 
-              <MDBBtn color='primary'>Button</MDBBtn>
+              <MDBBtn color='primary' href="/Login">Create Checking Account</MDBBtn>
             </MDBCardBody>
           </MDBCard>
         </MDBCol>
@@ -168,7 +178,7 @@ export default function Checking() {
                 accusantium doloremque laudantium, totam rem aperiam.
               </MDBCardText>
 
-              <MDBBtn color='primary'>Button</MDBBtn>
+              <MDBBtn color='primary' href="/Login">Create DBA Account</MDBBtn>
             </MDBCardBody>
           </MDBCard>
         </MDBCol>

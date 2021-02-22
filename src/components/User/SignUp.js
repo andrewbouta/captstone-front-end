@@ -1,16 +1,19 @@
-import React, { Component } from "react";
+
+import React, { Component, useState } from "react";
 import "./SignUp.css";
 import axios from 'axios';
 import { baseURL } from "../../shared/baseURL";
+import { Button, Container, Row, Col } from 'reactstrap';
 import { apiCall } from "../../shared/api";
 import AuthService from '../../services/authenticationService/authService';
 import Login from './Login';
 import { Link } from 'react-router-dom';
 
+/*
 const emailRegex = RegExp(
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 );
-
+*/
 const formValid = ({ formErrors, ...rest }) => {
   let valid = true;
 
@@ -27,31 +30,37 @@ const formValid = ({ formErrors, ...rest }) => {
   return valid;
 };
 
-class SignUp extends Component {
-  constructor(props) {
-    super(props);
+function SignUp() {
 
-    this.state = {
-      firstName: null,
-      lastName: null,
-      email: null,
-      password: null,
-      formErrors: {
-        firstName: "",
-        lastName: "",
-        userName:"",
-        email: "",
-        accountOpened: new Date(),
-        ssn: "",
-        password: ""
-      }
-    };
-  }
+  const [firstName, setfirstName]=useState("");
+  const [lastName, setlastName]=useState("");
+  const [username, setUsername]=useState("");
+  const [email, setEmail]=useState("");
+  const [password, setPassword]=useState("");
+  const [birthDate,setBirthDate]=useState("");
+  const active = true;
 
-submitUser() {
+
+ async function submitUser() {
+  let item = {username, password, active, firstName, lastName, email}
+    console.warn(item)
+  
+    let result = await fetch("http://localhost:8080/api/authenticate/createUser", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(item)      
+    });
+
+    result = await result.json();
+      
+    localStorage.setItem("user-info", JSON.stringify(result));
 
 }
 
+/*
   handleSubmit = async e => {
     e.preventDefault();
 
@@ -69,6 +78,7 @@ submitUser() {
     }
   };
 
+  
   handleChange = e => {
     e.preventDefault();
     const { name, value } = e.target;
@@ -103,96 +113,70 @@ submitUser() {
     this.setState({ formErrors, [name]: value }, () => console.log(this.state));
   };
 
-  render() {
-    const { formErrors } = this.state;
+ */
+    //const { formErrors } = this.state;
 
     return (
-      <div className="wrapper">
-        <div className="form-wrapper">
-          <h1>Create Account</h1>
-          <form onSubmit={this.handleSubmit} noValidate>
-            <div className="firstName">
-              <label htmlFor="firstName">First Name</label>
-              <input
-                className={formErrors.firstName.length > 0 ? "Name must be valid" : null}
-                placeholder="First Name"
-                type="text"
-                name="firstName"
-                noValidate
-                onChange={this.handleChange}
+      <Container>
+    <Row>
+  
+    <div className="wrapper">
+      <div className="form-wrapper">
+          <h1 className='my-4'>Create Account</h1>
+          
+          <div className="firstName">
+          <label htmlFor="firstName">First Name</label>
+            <input type='firstName' className='form-control' placeholder='First Name' required
+              value={firstName} onChange={(e) => setfirstName(e.target.value)}
+            />       
+          </div>
+
+          <div className="lastName"> 
+            <label htmlFor="lastName">Last Name</label>
+              <input type='lastName' className='form-control' placeholder='Last Name' required
+                value={lastName} onChange={(e) => setlastName(e.target.value)}
+              /> 
+          </div>
+         
+          <div className="email">
+            <label htmlFor="email">Email</label>
+              <input type='email' className='form-control' placeholder='Email' required
+                value={email} onChange={(e) => setEmail(e.target.value)}
               />
-              {formErrors.firstName.length > 0 && (
-                <span className="errorMessage">{formErrors.firstName}</span>
-              )}
-            </div>
-            <div className="lastName">
-              <label htmlFor="lastName">Last Name</label>
-              <input
-                className={formErrors.lastName.length > 0 ? "Last Name must be valid" : null}
-                placeholder="Last Name"
-                type="text"
-                name="lastName"
-                noValidate
-                onChange={this.handleChange}
+          </div>
+
+          <div className="userName">
+            <label htmlFor="userName">Username</label>
+              <input type='username' className='form-control' placeholder='Username' required
+                value={username} onChange={(e) => setUsername(e.target.value)} 
               />
-              {formErrors.lastName.length > 0 && (
-                <span className="errorMessage">{formErrors.lastName}</span>
-              )}
-            </div>
-            <div className="email">
-              <label htmlFor="email">Email</label>
-              <input
-                className={formErrors.email.length > 0 ? "error" : null}
-                placeholder="Email"
-                type="email"
-                name="email"
-                noValidate
-                onChange={this.handleChange}
-                required
+          </div>
+
+            <div className="password">
+              <label htmlFor="password">Password</label>
+            <input type='password' className='form-control' placeholder='Password' required
+              value={password} onChange={(e) => setPassword(e.target.value)}
+            />
+            </div>  
+         
+            <label htmlFor="birthday">Birthday</label>
+            <input type='birthDate' className='form-control' placeholder='Birthday' required
+                value={birthDate} onChange={(e) => setBirthDate(e.target.value)}
               />
-              {formErrors.email.length > 0 && (
-                <span className="errorMessage">{formErrors.email}</span>
-              )}
-            </div>
-            <div className="userName">
-              <label htmlFor="userName">Username</label>
-              <input
-                className={formErrors.userName.length > 0 ? "error" : null}
-                placeholder="Username"
-                type="username"
-                name="userName"
-                noValidate
-                onChange={this.handleChange}
-                required
-              />
-              {formErrors.userName.length > 0 && (
-                <span className="errorMessage">{formErrors.userName}</span>
-              )}
-            </div>
-            <div className="password">
-              <label htmlFor="password">Password</label>
-              <input
-                className={formErrors.password.length > 0 ? "error" : null}
-                placeholder="Password"
-                type="password"
-                name="password"
-                noValidate
-                onChange={this.handleChange}
-                required
-              />
-              {formErrors.password.length > 0 && (
-                <span className="errorMessage">{formErrors.password}</span>
-              )}
-            </div>
-            <div className="createAccount">
-              <button onClick={this.handleSubmit}>Create Account</button>
-              <small><Link to="/Login">Already Have an Account?</Link></small>
-            </div>
-          </form>
-        </div>
+
+            <button className='w-100 btn btn-lg btn-primary' onClick={submitUser}>
+              Create Account
+            </button>
+            
+          <small><Link to="/Login">Already Have an Account?</Link></small>
       </div>
-    );
-  }
+    </div>
+  </Row>
+  
+</Container>
+
+);
 }
+
 
 export default SignUp;

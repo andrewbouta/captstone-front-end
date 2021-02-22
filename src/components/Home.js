@@ -6,12 +6,10 @@ function Home (props) {
     return (
           
     <div>
-    <Jumbotron />
-    <h3> Open your account today </h3>
-    <p> </p>
-    <HomeCarousel />
-    
-    
+        <Jumbotron />
+        <h3> Open your account today </h3>
+        <p> </p>
+        <HomeCarousel />    
     </div>
 
     );

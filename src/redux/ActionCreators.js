@@ -2,7 +2,7 @@ import { baseURL } from '../shared/baseURL';
 import * as ActionTypes from './ActionTypes';
 
 export const addJWTToken = (token) => ({
-    type: ActionTypes.ADD_JWT_TOKEN, // this ActionType gets sent to the Store.js 
+    type: ActionTypes.ADD_JWT_TOKEN, // this ActionType saves the token to the Store.js 
     payload: token
 });
 

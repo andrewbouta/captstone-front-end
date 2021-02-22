@@ -1,21 +1,16 @@
 import React from 'react'
 import Footer from './Footer'
-import { Icon } from './FooterIcons'
+//import { Icon } from './FooterIcons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { library } from "@fortawesome/fontawesome-svg-core";
-import {  faFacebook, faTwitter, faLinkedin, faYoutubeSquare, faInstagram} from '@fortawesome/free-brands-svg-icons';
+//import { library } from "@fortawesome/fontawesome-svg-core";
+import {  faFacebook, faTwitter, faLinkedin, faInstagram} from '@fortawesome/free-brands-svg-icons';
 
 export function FooterContainer() {
     return (
         <Footer>
             <Footer.Wrapper>
             <Footer.Row>
-                <Footer.Column>
-                <Footer.Title>About Us</Footer.Title>
-                    <Footer.Link href="#">Story</Footer.Link>
-                    <Footer.Link href="#">Clients</Footer.Link>
-                    
-                </Footer.Column>
+              
                 <Footer.Column>
                 <Footer.Title>Services</Footer.Title>
                     <Footer.Link href="/Checking">Checking</Footer.Link>

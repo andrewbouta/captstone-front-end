@@ -92,7 +92,7 @@ light green: #A3C4BC
   
   .firstName,
   .lastName {
-    width: 49%;
+    width: 100%;
   }
   
   .email,
